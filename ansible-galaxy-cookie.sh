@@ -6,10 +6,10 @@ NAMESPACE=jcook3701
 # PROJECT=source
 # PROJECT=pkgs
 # PROJECT=utils
-PROJECT=docker
+# PROJECT=docker
 # PROJECT=homelab
 # PROJECT=lab
-
+# PROJECT=
 LICENSE="AGPL-3.0-or-later"
 
 BRANCH=main
