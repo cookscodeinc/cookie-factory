@@ -1,5 +1,10 @@
 build/
 .env
+node_modules/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
 *-cookiecutter
 clubpoker
 nutri_matic

@@ -1,6 +1,6 @@
 {
   "name": "Cookie Factory",
-  "dockerComposeFile": "../compose.yaml",
+  "dockerComposeFile": "../compose.yml",
   "service": "dev",
   "runServices": ["dev"],
   "workspaceFolder": "/workspace",
@@ -10,16 +10,20 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "charliermarsh.ruff",
         "ms-python.python",
         "openai.chatgpt",
         "redhat.vscode-yaml",
+        "DavidAnson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker",
         "timonwong.shellcheck"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/opt/venv/bin/python",
+        "ruff.importStrategy": "fromEnvironment",
         "shellcheck.executablePath": "/usr/bin/shellcheck"
       }
     }
   },
-  "postCreateCommand": "python --version && ruby --version && shellcheck --version"
+  "postCreateCommand": "python --version && ruby --version && node --version && npm --version && pre-commit --version && shellcheck --version"
 }

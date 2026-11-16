@@ -2,13 +2,13 @@
 
 Cookie Factory provides repeatable project-generation wrappers for Cook's Code,
 Inc. Development and verification run in containers so the host does not need a
-project-specific Python virtual environment, Ruby installation, Jekyll, or
-ShellCheck.
+project-specific Python virtual environment, Ruby installation, Jekyll, Node.js,
+or linting tools.
 
 ## Development environment
 
 The supported interactive environment is the VS Code Dev Containers extension.
-It uses the `dev` service in `compose.yaml` and installs the Python, ShellCheck,
+It uses the `dev` service in `compose.yml` and installs the Python, ShellCheck,
 YAML, and Codex extensions inside that environment.
 
 1. Copy `.env.example` to `.env`.
@@ -28,15 +28,47 @@ Build the toolchain once:
 make build
 ```
 
-Run deterministic verification without runtime network access:
+Run the complete lint suite without runtime network access:
+
+```shell
+make lint
+```
+
+This checks Bash, Python, YAML, GitHub Actions, Dockerfiles, Markdown, spelling,
+JSON, and repository formatting. Apply the supported automatic formatting with
+`make format`; semantic lint findings still require a deliberate fix.
+
+Run the pre-commit policy against every tracked file:
+
+```shell
+make pre-commit
+```
+
+The hooks reuse the pinned tools in the development image, run without network
+access, and apply safe staged-file fixes for whitespace, line endings, Ruff, and
+Prettier. Standard checks also cover syntax, merge markers, large files,
+symlinks, executable permissions, debug statements, and private keys.
+
+To enable automatic Git hooks, run this once from a terminal inside the VS Code
+Dev Container:
+
+```shell
+pre-commit install --install-hooks
+```
+
+That installs both `pre-commit` and `pre-push` because the hook types are
+declared in `.pre-commit-config.yaml` (the filename required by pre-commit). Run
+commits from the same container; for
+host-side commits, install pre-commit on the host or use `make pre-commit`.
+
+Run deterministic tests without runtime network access:
 
 ```shell
 make test
 ```
 
-This runs ShellCheck, the complete upstream `feat-024` pytest suite, a real
-Cookie Factory generation, and assertions over the generated GitHub Pages
-routing and content.
+This runs the complete upstream `feat-024` pytest suite, a real Cookie Factory
+generation, and assertions over the generated GitHub Pages routing and content.
 
 Run a real Jekyll remote-theme build when network verification is required:
 
@@ -44,7 +76,7 @@ Run a real Jekyll remote-theme build when network verification is required:
 make site-test
 ```
 
-Run both stages:
+Run pre-commit, linting, and both test stages:
 
 ```shell
 make verify
@@ -94,3 +126,9 @@ Compose test path.
 ## Maintainer
 
 Maintained by Jared Cook as part of the Cook's Code cookiecutter ecosystem.
+
+## License
+
+Cookie Factory is free software licensed under the GNU General Public License,
+version 3 or later (`GPL-3.0-or-later`). See [LICENSE.md](LICENSE.md) for the
+complete license terms.

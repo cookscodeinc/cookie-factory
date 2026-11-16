@@ -14,16 +14,14 @@ if [[ ! -f "$TEMPLATE_ROOT/cookiecutter.json" ]]; then
 	exit 1
 fi
 
-printf '%s\n' '==> ShellCheck'
-mapfile -d '' shell_scripts < <(find "$WORKSPACE_ROOT" -maxdepth 2 -type f -name '*.sh' -print0)
-shellcheck "${shell_scripts[@]}"
-
-printf '%s\n' '==> Upstream template tests'
-python -m pytest \
-	--quiet \
-	-p no:cacheprovider \
-	--template "$TEMPLATE_ROOT" \
-	"$TEMPLATE_ROOT/tests"
+if [[ "${SKIP_UPSTREAM_TESTS:-0}" != "1" ]]; then
+	printf '%s\n' '==> Upstream template tests'
+	python -m pytest \
+		--quiet \
+		-p no:cacheprovider \
+		--template "$TEMPLATE_ROOT" \
+		"$TEMPLATE_ROOT/tests"
+fi
 
 printf '%s\n' '==> Cookie Factory integration generation'
 env \

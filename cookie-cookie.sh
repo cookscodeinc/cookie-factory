@@ -7,7 +7,7 @@
 # PROJECT=ansible-config-cookiecutter
 PROJECT=typescript-cookiecutter
 
-LICENSE="AGPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later"
 
 BRANCH=main
 

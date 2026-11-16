@@ -10,7 +10,7 @@ NAMESPACE=jcook3701
 # PROJECT=homelab
 # PROJECT=lab
 # PROJECT=
-LICENSE="AGPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later"
 
 BRANCH=main
 

@@ -5,11 +5,14 @@
 
 
 # Note: Python3 Cookiecutter Project
+LICENSE="GPL-3.0-or-later"
+
 cookiecutter git@github.com:jcook3701/python3-cookiecutter.git \
 	--checkout develop \
 	--no-input \
 	project_name="testing" \
-	description="Cookiecutter utilities for jcook3701's cookiecutter templates."
+	description="Cookiecutter utilities for jcook3701's cookiecutter templates." \
+	license="$LICENSE"
 
 
 # cd python3_cookiecutter/docs/jekyll/

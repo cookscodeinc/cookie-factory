@@ -39,6 +39,7 @@ x-test-service: &test-service
     BUNDLE_GEMFILE: /opt/jekyll/Gemfile
     CI: "1"
     HOME: /tmp/home
+    RUFF_CACHE_DIR: /tmp/ruff-cache
     TEMPLATE_ROOT: /template
     XDG_CACHE_HOME: /tmp/cache
 
@@ -66,6 +67,33 @@ services:
     <<: *test-service
     network_mode: none
 
+  lint:
+    <<: *test-service
+    command: ["/workspace/tests/container/lint.sh"]
+    network_mode: none
+
+  hooks:
+    <<: *image
+    user: ${LOCAL_UID:-1000}:${LOCAL_GID:-1000}
+    working_dir: /workspace
+    command: ["pre-commit", "run", "--all-files", "--show-diff-on-failure"]
+    network_mode: none
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:exec,mode=1777
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+    environment:
+      HOME: /tmp/home
+      PRE_COMMIT_HOME: /tmp/pre-commit
+      RUFF_CACHE_DIR: /tmp/ruff-cache
+
   site-test:
     <<: *test-service
     environment:
@@ -73,6 +101,7 @@ services:
       BUNDLE_GEMFILE: /opt/jekyll/Gemfile
       CI: "1"
       HOME: /tmp/home
+      SKIP_UPSTREAM_TESTS: "1"
       TEMPLATE_ROOT: /template
       XDG_CACHE_HOME: /tmp/cache
 

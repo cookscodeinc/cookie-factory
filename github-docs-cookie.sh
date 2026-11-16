@@ -22,7 +22,7 @@ FORMSPREE_FORM_PATH="${FORMSPREE_FORM_PATH:-}"
 # DESCRIPTION="Welcome to the family history repository. This project serves as a centralized collection of genealogical data, trees, and historical documentation."
 DESCRIPTION="${DESCRIPTION:-}"
 GITHUB_ORG="${GITHUB_ORG:-cookscodeinc}"
-LICENSE="${LICENSE:-AGPL-3.0-or-later}"
+LICENSE="${LICENSE:-GPL-3.0-or-later}"
 PUB_YEAR="${PUB_YEAR:-2026}"
 THEME="${THEME:-mmistakes/minimal-mistakes}"
 

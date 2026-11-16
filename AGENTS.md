@@ -11,7 +11,9 @@ projects. The GitHub Pages integration is validated against the sibling
 Use the containerized workflows; do not depend on host Python, Ruby, Bundler,
 Cookiecutter, Jekyll, or ShellCheck installations.
 
-- Run `make test` for offline linting, upstream template tests, and generation.
+- Run `make lint` for the complete offline repository lint suite.
+- Run `make pre-commit` to exercise every hook against all tracked files.
+- Run `make test` for upstream template tests and representative generation.
 - Run `make site-test` when a real networked Jekyll remote-theme build matters.
 - Run `make verify` before handing off changes to container or generation logic.
 
@@ -26,7 +28,8 @@ credentials. It is safe to rerun a failed service after making an in-scope fix.
 - Network access in `site-test` is limited to resolving and building the remote
   Jekyll theme.
 - Keep the source and template mounts read-only in test services.
-- Pin Python and Ruby dependencies and update their locks deliberately.
+- Keep pre-commit hooks local and system-language so they reuse the pinned image.
+- Pin Python, Ruby, and Node.js dependencies and update their locks deliberately.
 
 ## Script conventions
 
@@ -35,3 +38,8 @@ credentials. It is safe to rerun a failed service after making an in-scope fix.
   and CI.
 - Validate deletion targets before recursive removal.
 - Preserve unrelated working-tree changes.
+
+## Licensing
+
+- Cookie Factory and generated-project defaults use `GPL-3.0-or-later`.
+- Keep the canonical GPLv3 text in `LICENSE.md` unchanged.

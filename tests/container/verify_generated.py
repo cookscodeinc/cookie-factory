@@ -18,6 +18,7 @@ def main() -> None:
     config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     expected = {
         "baseurl": "/cookscodeinc",
+        "license": "GPL-3.0-or-later",
         "repository": "cookscodeinc/cookscodeinc",
         "url": "https://cookscodeinc.github.io",
     }
@@ -40,7 +41,7 @@ def main() -> None:
         str(path) for path in project_root.rglob("*") if path.name.endswith(".j2")
     ]
     if remaining_templates:
-        raise SystemExit(f"Unfinalized Jinja templates remain: {remaining_templates!r}")
+        raise SystemExit(f"Jinja templates were not rendered: {remaining_templates!r}")
 
 
 if __name__ == "__main__":
