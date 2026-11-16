@@ -1,0 +1,80 @@
+name: cookie-factory
+
+x-image: &image
+  image: ${COOKIE_FACTORY_IMAGE:-cookie-factory-toolchain:local}
+  init: true
+
+x-toolchain: &toolchain
+  <<: *image
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
+    args:
+      USER_GID: ${LOCAL_GID:-1000}
+      USER_UID: ${LOCAL_UID:-1000}
+
+x-test-service: &test-service
+  <<: *image
+  user: ${LOCAL_UID:-1000}:${LOCAL_GID:-1000}
+  working_dir: /workspace
+  command: ["/workspace/tests/container/run.sh"]
+  read_only: true
+  cap_drop:
+    - ALL
+  security_opt:
+    - no-new-privileges:true
+  tmpfs:
+    - /output:exec,mode=1777
+    - /tmp:exec,mode=1777
+  volumes:
+    - type: bind
+      source: .
+      target: /workspace
+      read_only: true
+    - type: bind
+      source: ${GITHUB_DOCS_TEMPLATE_DIR:?Set GITHUB_DOCS_TEMPLATE_DIR in .env}
+      target: /template
+      read_only: true
+  environment:
+    BUNDLE_GEMFILE: /opt/jekyll/Gemfile
+    CI: "1"
+    HOME: /tmp/home
+    TEMPLATE_ROOT: /template
+    XDG_CACHE_HOME: /tmp/cache
+
+services:
+  dev:
+    <<: *toolchain
+    user: ${LOCAL_UID:-1000}:${LOCAL_GID:-1000}
+    working_dir: /workspace
+    command: ["sleep", "infinity"]
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+      - type: bind
+        source: ${GITHUB_DOCS_TEMPLATE_DIR:?Set GITHUB_DOCS_TEMPLATE_DIR in .env}
+        target: /template
+        read_only: true
+      - type: volume
+        source: dev-home
+        target: /home/vscode
+    environment:
+      TEMPLATE_ROOT: /template
+
+  test:
+    <<: *test-service
+    network_mode: none
+
+  site-test:
+    <<: *test-service
+    environment:
+      BUILD_SITE: "1"
+      BUNDLE_GEMFILE: /opt/jekyll/Gemfile
+      CI: "1"
+      HOME: /tmp/home
+      TEMPLATE_ROOT: /template
+      XDG_CACHE_HOME: /tmp/cache
+
+volumes:
+  dev-home:

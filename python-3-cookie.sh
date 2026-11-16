@@ -9,7 +9,7 @@ cookiecutter git@github.com:jcook3701/python3-cookiecutter.git \
 	--checkout develop \
 	--no-input \
 	project_name="testing" \
-	description="Cookiecutter utilities for jcook3701's cookiecuter templates."
+	description="Cookiecutter utilities for jcook3701's cookiecutter templates."
 
 
 # cd python3_cookiecutter/docs/jekyll/

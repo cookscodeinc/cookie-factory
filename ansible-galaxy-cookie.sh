@@ -16,16 +16,17 @@ BRANCH=main
 
 # Note: Github Docs Cookiecutter Project
 # cookiecutter git@github.com:jcook3701/github-docs-cookiecutter.git --checkout develop
-rm -rf $NAMESPACE.$PROJECT/
-source ~/Documents/git_repo/nutri-matic/.venv/bin/activate
+rm -rf "$NAMESPACE.$PROJECT/"
+# shellcheck disable=SC1091
+source "$HOME/Documents/git_repo/nutri-matic/.venv/bin/activate"
 # Note: Ansible Galaxy Cookiecutter Project
 cookiecutter git@github.com:jcook3701/ansible-galaxy-cookiecutter.git \
-	--checkout $BRANCH \
+	--checkout "$BRANCH" \
 	--no-input \
-	--output-dir ~/Documents/git_repo/ \
-	project_name=$PROJECT \
+	--output-dir "$HOME/Documents/git_repo/" \
+	project_name="$PROJECT" \
 	description="Ansible Galaxy collection used to install docker packages." \
-	license=$LICENSE
+	license="$LICENSE"
 
 deactivate
 

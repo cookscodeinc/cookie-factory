@@ -1,0 +1,6 @@
+cookiecutter==2.6.0
+jinja2-time==0.2.0
+nutri-matic==0.1.15
+pytest==9.0.2
+pytest-cookies==0.7.0
+PyYAML==6.0.3

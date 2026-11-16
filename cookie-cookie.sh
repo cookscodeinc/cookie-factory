@@ -13,14 +13,15 @@ BRANCH=main
 
 # Note: Github Docs Cookiecutter Project
 # cookiecutter git@github.com:jcook3701/github-docs-cookiecutter.git --checkout develop
-rm -rf $PROJECT/
-source ~/Documents/git_repo/nutri-matic/.venv/bin/activate
+rm -rf "$PROJECT"
+# shellcheck disable=SC1091
+source "$HOME/Documents/git_repo/nutri-matic/.venv/bin/activate"
 # Note: Ansible Galaxy Cookiecutter Project
 cookiecutter git@github.com:jcook3701/cookiecutter-cookiecutter.git \
-	--checkout $BRANCH \
+	--checkout "$BRANCH" \
 	--no-input \
-	project_name=$PROJECT \
+	project_name="$PROJECT" \
 	description="**Typescript** cookiecutter project." \
-	license=$LICENSE
+	license="$LICENSE"
 
 deactivate
