@@ -16,6 +16,8 @@ Cookiecutter, Jekyll, or ShellCheck installations.
 - Run `make test` for upstream template tests and representative generation.
 - Run `make site-test` when a real networked Jekyll remote-theme build matters.
 - Run `make verify` before handing off changes to container or generation logic.
+- Run `make docs-generate` to replace `docs/jekyll` from the mounted GitHub Docs
+  template, then review and restore intentional project-specific prose.
 
 The services use disposable output directories and contain no production
 credentials. It is safe to rerun a failed service after making an in-scope fix.

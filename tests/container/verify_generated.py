@@ -17,10 +17,13 @@ def main() -> None:
 
     config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     expected = {
-        "baseurl": "/cookscodeinc",
+        "baseurl": "/cookie-factory",
         "license": "GPL-3.0-or-later",
-        "repository": "cookscodeinc/cookscodeinc",
-        "url": "https://cookscodeinc.github.io",
+        "remote_theme": "just-the-docs/just-the-docs@v0.11.0",
+        "repository": "jcook3701/cookie-factory",
+        "site_type": "documentation",
+        "theme_family": "just_the_docs",
+        "url": "https://jcook3701.github.io",
     }
     actual = {key: config.get(key) for key in expected}
     if actual != expected:
@@ -29,8 +32,8 @@ def main() -> None:
     required_paths = (
         project_root / "Gemfile",
         project_root / "README.md",
-        project_root / "_data/navigation.yml",
-        project_root / "about.md",
+        project_root / "_manual/introduction/getting-started.md",
+        project_root / "_manual/setup-guide/requirements.md",
         project_root / "index.md",
     )
     missing = [str(path) for path in required_paths if not path.is_file()]

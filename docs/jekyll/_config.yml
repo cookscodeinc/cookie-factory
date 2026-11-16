@@ -1,0 +1,138 @@
+# Cookie Factory — generated Jekyll configuration
+---
+# -----------------------------------------------------------------------------
+# Common site metadata and GitHub Pages routing
+# -----------------------------------------------------------------------------
+title: "Cookie Factory"
+description: "Containerized project generators for repeatable Cook's Code repositories."
+author: "Jared Cook"
+company: "Cook's Code, Inc."
+email: "jcook3701+github@gmail.com"
+version: "0.1.0"
+license: "GPL-3.0-or-later"
+copyright: "Copyright (c) 2026, Jared Cook"
+timezone: "America/Los_Angeles"
+site_type: "documentation"
+url: "https://jcook3701.github.io"
+baseurl: "/cookie-factory"
+
+repository: "jcook3701/cookie-factory"
+repo_url: "https://github.com/jcook3701/cookie-factory"
+repo_blob: "https://github.com/jcook3701/cookie-factory/blob/master"
+github_io_url: "https://jcook3701.github.io/cookie-factory"
+github_username: "jcook3701"
+linkedin_usercode: "jared-cook-b3585a114"
+buymeacoffee_username: "jcook3701"
+
+# -----------------------------------------------------------------------------
+# Theme selection
+# -----------------------------------------------------------------------------
+theme_family: "just_the_docs"
+theme_supported: true
+site_type_supported: true
+selection_supported: true
+remote_theme: "just-the-docs/just-the-docs@v0.11.0"
+
+# -----------------------------------------------------------------------------
+# Collections
+# -----------------------------------------------------------------------------
+collections:
+  manual:
+    output: true
+    permalink: "/:collection/:path"
+  resources:
+    output: true
+    permalink: "/:collection/:path"
+
+# -----------------------------------------------------------------------------
+# Jekyll plugins
+# -----------------------------------------------------------------------------
+plugins:
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+  - jekyll-include-cache
+  - jekyll-sitemap
+  - jekyll-remote-theme
+
+# -----------------------------------------------------------------------------
+# Theme-specific configuration
+# -----------------------------------------------------------------------------
+# Just the Docs
+just_the_docs:
+  collections:
+    manual:
+      name: Manual
+      nav_fold: true
+      nav_exclude: false
+    resources:
+      name: External Links
+      nav_fold: false
+      nav_exclude: false
+ga_tracking: "G-C7PWLWSHB9"
+search_enabled: true
+enable_copy_code_button: true
+mermaid:
+  version: "9.1.6"
+heading_anchors: true
+aux_links:
+  "Cookie Factory on GitHub":
+    - "https://github.com/jcook3701/cookie-factory"
+aux_links_new_tab: false
+nav_enabled: true
+back_to_top: true
+back_to_top_text: "Back to top"
+footer_content: >-
+  Copyright (c) 2026, Jared Cook. Distributed under the
+  <a href="https://github.com/jcook3701/cookie-factory/blob/master/LICENSE.md">GPL-3.0-or-later license</a>.
+last_edit_timestamp: true
+last_edit_time_format: "%b %e %Y at %I:%M %p"
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/jcook3701/cookie-factory"
+gh_edit_branch: "master"
+gh_edit_source: "docs/jekyll"
+gh_edit_view_mode: "tree"
+callouts_level: quiet
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+
+# -----------------------------------------------------------------------------
+# Shared Jekyll options
+# -----------------------------------------------------------------------------
+markdown: kramdown
+kramdown:
+  auto_ids: true
+include:
+  - .well-known
+exclude:
+  - node_modules
+  - .DS_Store
+  - Makefile
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - THIRD_PARTY_NOTICES.md
+  - docs
+  - .cookiecutter-site.json
+  - _site_resources
+  - _theme_resources
+  - vendor
+
+# Additional site metadata. Jekyll SEO Tag principally uses top-level fields.
+seo:
+  title: "Cookie Factory Documentation"
+  description: "Containerized project generators for repeatable Cook's Code repositories."

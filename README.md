@@ -105,8 +105,17 @@ OUTPUT_DIR=/output \
 ./github-docs-cookie.sh
 ```
 
-The current representative build generates a company website using Minimal
-Mistakes and GitHub Project Pages routing.
+The representative build generates Cookie Factory documentation using the
+pinned Just the Docs theme and GitHub Project Pages routing. Regenerate the
+checked-in site from the mounted `github-doc-cookiecutter` checkout with:
+
+```shell
+make docs-generate
+```
+
+The generated source is installed at `docs/jekyll`. Review the resulting diff
+before committing an upstream template update. The published site is available
+at [jcook3701.github.io/cookie-factory](https://jcook3701.github.io/cookie-factory).
 
 ## Other generators
 

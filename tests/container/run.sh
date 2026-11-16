@@ -5,7 +5,7 @@ set -euo pipefail
 WORKSPACE_ROOT="${WORKSPACE_ROOT:-/workspace}"
 TEMPLATE_ROOT="${TEMPLATE_ROOT:-/template}"
 OUTPUT_ROOT="${OUTPUT_ROOT:-/output}"
-GENERATED_PROJECT="$OUTPUT_ROOT/cookscodeinc"
+GENERATED_PROJECT="$OUTPUT_ROOT/cookie-factory"
 
 mkdir -p "$HOME" "$XDG_CACHE_HOME" "$OUTPUT_ROOT"
 
@@ -44,6 +44,16 @@ if [[ "${BUILD_SITE:-0}" == "1" ]]; then
 		--destination "$OUTPUT_ROOT/site" \
 		--trace
 	test -f "$OUTPUT_ROOT/site/index.html"
+
+	printf '%s\n' '==> Committed documentation build'
+	export BUNDLE_GEMFILE=/opt/jekyll/Gemfile
+	bundle check
+	bundle exec jekyll build \
+		--source "$WORKSPACE_ROOT/docs/jekyll" \
+		--destination "$OUTPUT_ROOT/docs-site" \
+		--disable-disk-cache \
+		--trace
+	test -f "$OUTPUT_ROOT/docs-site/index.html"
 fi
 
 printf '%s\n' '==> Container verification passed'
