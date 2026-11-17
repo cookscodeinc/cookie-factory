@@ -2,7 +2,7 @@ cookiecutter==2.6.0
 jinja2-time==0.2.0
 nutri-matic==0.1.15
 pathspec==1.1.1
-pre-commit==4.6.2
+pre-commit==4.7.0
 pre-commit-hooks==6.0.0
 pytest==9.0.2
 pytest-cookies==0.7.0
