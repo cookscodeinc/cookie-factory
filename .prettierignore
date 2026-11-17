@@ -1,0 +1,5 @@
+build/
+docker/Gemfile.lock
+docker/requirements-test.txt
+LICENSE.md
+node_modules/

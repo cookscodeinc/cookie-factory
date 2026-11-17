@@ -1,0 +1,100 @@
+name: Container tests
+
+on:
+  workflow_call:
+  pull_request:
+  push:
+    branches:
+      - develop
+      - feat-01
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: container-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: cookie-factory
+    env:
+      COOKIE_FACTORY_IMAGE: cookie-factory-toolchain:ci
+      COOKIECUTTER_ROOT: ${{ github.workspace }}/templates
+      LOCAL_GID: "1000"
+      LOCAL_UID: "1000"
+
+    steps:
+      # Keep the source and auxiliary templates as siblings. Filesystem-glob
+      # linters must never traverse another repository.
+      - name: Check out Cookie Factory
+        uses: actions/checkout@v5
+        with:
+          path: cookie-factory
+
+      - name: Check out GitHub Docs Cookiecutter
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository_owner }}/github-docs-cookiecutter
+          ref: feat-024
+          path: templates/github-doc-cookiecutter
+
+      - name: Check out Python 3 Cookiecutter
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository_owner }}/python3-cookiecutter
+          ref: feat-003
+          path: templates/python3-cookiecutter
+
+      - name: Check out Cookiecutter Cookiecutter
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository_owner }}/cookiecutter-cookiecutter
+          ref: feat-033
+          path: templates/cookiecutter-cookiecutter
+
+      - name: Check out Sphinx Cookiecutter
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository_owner }}/sphinx-cookiecutter
+          ref: feat-008
+          path: templates/sphinx-cookiecutter
+
+      - name: Check out Ansible Galaxy Cookiecutter
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository_owner }}/ansible-galaxy-cookiecutter
+          ref: feat-011
+          path: templates/ansible-galaxy-cookiecutter
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build test toolchain
+        uses: docker/build-push-action@v6
+        with:
+          context: ./cookie-factory
+          file: ./cookie-factory/docker/Dockerfile
+          load: true
+          push: false
+          tags: cookie-factory-toolchain:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Validate Compose configuration
+        run: docker compose config --quiet
+
+      - name: Run repository linting
+        run: docker compose run --rm lint
+
+      - name: Run offline verification
+        run: docker compose run --rm test
+
+      - name: Build generated Jekyll site
+        run: docker compose run --rm site-test
