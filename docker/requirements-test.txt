@@ -42,7 +42,7 @@ pycparser==3.12
 pydantic==2.14.3
 pydantic-core==2.50.4
 pygments==2.21.0
-pytest==9.0.2
+pytest==9.2.0
 pytest-cookies==0.7.0
 python-dateutil==4.0.0
 python-discovery==1.9.5
