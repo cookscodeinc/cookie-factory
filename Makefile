@@ -6,7 +6,7 @@ RELEASE_NOTES_FILE ?= build/release-notes.md
 RELEASE_TAG ?= v$(shell tr -d '[:space:]' < VERSION)
 ALLOW_PRERELEASE ?= false
 
-.PHONY: build config dev docs-generate down format help lint pre-commit release release-check release-dry-run release-notes site-test test verify
+.PHONY: build config dev docs-generate down format generate help lint pre-commit release release-check release-dry-run release-notes site-test templates-list templates-validate test verify
 
 config: ## Validate the resolved Compose model.
 	docker compose config --quiet
@@ -21,18 +21,29 @@ docs-generate: config ## Regenerate docs/jekyll from the mounted GitHub Docs tem
 	docker compose run --rm \
 		--env BRANCH= \
 		--env CI=1 \
-		--env COOKIE_REPO=/template \
+		--env COOKIE_REPO=/templates/github-doc-cookiecutter \
 		--env GEMFILE_LOCK_SOURCE=/workspace/docker/Gemfile.lock \
 		--env INSTALL_DIR=/workspace/docs/jekyll \
 		--env OUTPUT_DIR=/workspace/build \
 		--env PYTHON_ACTIVATE= \
 		dev /workspace/github-docs-cookie.sh
 
+templates-list: config ## List every enabled and disabled Cookiecutter template.
+	docker compose run --rm dev /workspace/cookie-factory.sh list
+
+templates-validate: config ## Validate the catalog and all enabled local checkouts.
+	docker compose run --rm dev /workspace/cookie-factory.sh validate --require-paths
+
+generate: config ## Generate TEMPLATE into build/generated with catalog defaults.
+	@test -n "$(TEMPLATE)" || { printf '%s\n' 'Usage: make generate TEMPLATE=<id>'; exit 2; }
+	docker compose run --rm dev \
+		/workspace/cookie-factory.sh generate "$(TEMPLATE)" --output-dir /workspace/build/generated
+
 down: ## Stop the development stack without deleting its home volume.
 	docker compose down
 
 format: config ## Apply supported automatic formatting in the dev service.
-	docker compose run --rm dev bash -lc 'ruff check --fix tests && ruff format tests && npm run format'
+	docker compose run --rm dev bash -lc 'ruff check --fix scripts tests && ruff format scripts tests && npm run format'
 
 lint: config ## Run every repository linter without runtime network access.
 	docker compose run --rm lint

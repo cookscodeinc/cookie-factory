@@ -3,7 +3,8 @@
 .github/
 .venv/
 build/
-github-docs-cookiecutter/
+*-cookiecutter/
+templates/
 node_modules/
 .env
 *.egg-info/

@@ -3,15 +3,15 @@ layout: "default"
 title: "GitHub Docs Generation"
 description: "Generate and update the Just the Docs site from its Cookiecutter."
 author: "Jared Cook"
-nav_order: 2
+nav_order: 3
 parent: "Tutorials"
 ---
 
 ## Generate GitHub documentation
 
-Set `GITHUB_DOCS_TEMPLATE_DIR` in `.env` to the absolute path of a clean
-`github-docs-cookiecutter` checkout. Cookie Factory mounts that checkout
-read-only at `/template`.
+Set `COOKIECUTTER_ROOT` in `.env` to the absolute parent of the cataloged
+template checkouts. Cookie Factory mounts that parent read-only at `/templates`;
+the GitHub Docs entry resolves to `/templates/github-doc-cookiecutter`.
 
 Generate the documentation site with:
 

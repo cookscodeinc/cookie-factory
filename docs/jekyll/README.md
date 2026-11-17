@@ -28,6 +28,7 @@ Jekyll, Node.js, or linting tools on the host.
 - [Requirements](https://jcook3701.github.io/cookie-factory/manual/setup-guide/requirements)
 - [Installation guide](https://jcook3701.github.io/cookie-factory/manual/introduction/installation-guide)
 - [Container workflow](https://jcook3701.github.io/cookie-factory/manual/tutorials/container-workflow)
+- [Template catalog](https://jcook3701.github.io/cookie-factory/manual/tutorials/template-catalog)
 - [GitHub Docs generation](https://jcook3701.github.io/cookie-factory/manual/tutorials/github-docs)
 - [Release guide](https://jcook3701.github.io/cookie-factory/manual/release/)
 

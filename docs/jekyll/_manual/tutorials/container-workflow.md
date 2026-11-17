@@ -17,7 +17,7 @@ different permissions and network boundaries.
 | `dev`       | Interactive VS Code and formatting environment | Enabled  |
 | `hooks`     | Full pre-commit policy                         | Disabled |
 | `lint`      | Repository lint suite                          | Disabled |
-| `test`      | Template tests and representative generation   | Disabled |
+| `test`      | All enabled bake suites and integration checks | Disabled |
 | `site-test` | Generated and committed Jekyll builds          | Enabled  |
 
 Build the image once, then use the focused target for the task:
@@ -35,6 +35,6 @@ Before handing off changes to the container or generation logic, run:
 make verify
 ```
 
-Test services mount source and template inputs read-only, run with dropped
+Test services mount source and all template inputs read-only, run with dropped
 Linux capabilities, and use disposable output directories. They do not receive
 the Docker socket, host home directory, SSH keys, or cloud credentials.

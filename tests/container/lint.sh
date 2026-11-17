@@ -25,8 +25,8 @@ mapfile -d '' shell_scripts < <(
 shellcheck "${shell_scripts[@]}"
 
 printf '%s\n' '==> Ruff lint and format checks'
-ruff check tests
-ruff format --check tests
+ruff check scripts tests
+ruff format --check scripts tests
 
 printf '%s\n' '==> YAML lint'
 mapfile -d '' yaml_files < <(

@@ -251,7 +251,18 @@ def test_ci_keeps_auxiliary_checkout_outside_source_tree() -> None:
 
     assert verify["defaults"]["run"]["working-directory"] == "cookie-factory"
     assert steps["Check out Cookie Factory"]["with"]["path"] == "cookie-factory"
-    assert steps["Check out GitHub Docs Cookiecutter"]["with"]["path"] == "github-docs-cookiecutter"
+    auxiliary_paths = {
+        step["with"]["path"]
+        for step in verify["steps"]
+        if step["name"].startswith("Check out ") and step["name"] != "Check out Cookie Factory"
+    }
+    assert auxiliary_paths == {
+        "templates/ansible-galaxy-cookiecutter",
+        "templates/cookiecutter-cookiecutter",
+        "templates/github-doc-cookiecutter",
+        "templates/python3-cookiecutter",
+        "templates/sphinx-cookiecutter",
+    }
     build_inputs = steps["Build test toolchain"]["with"]
     assert build_inputs["context"] == "./cookie-factory"
     assert build_inputs["file"] == "./cookie-factory/docker/Dockerfile"

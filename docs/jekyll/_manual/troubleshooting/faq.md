@@ -11,8 +11,9 @@ parent: "Troubleshooting"
 
 ### Compose says the template directory is not set
 
-Copy `.env.example` to `.env` and set `GITHUB_DOCS_TEMPLATE_DIR` to an absolute
-host path containing `cookiecutter.json`.
+Copy `.env.example` to `.env` and set `COOKIECUTTER_ROOT` to the absolute parent
+directory containing the checkouts listed in `cookiecutters.yml`. Run
+`make templates-validate` to identify a missing directory.
 
 ### Generated files have the wrong owner
 

@@ -14,8 +14,8 @@
     "trim_blocks": true
   },
   "_output_dir": "/workspace/build",
-  "_repo_dir": "/template",
-  "_template": "/template",
+  "_repo_dir": "/templates/github-doc-cookiecutter",
+  "_template": "/templates/github-doc-cookiecutter",
   "author": "Jared Cook",
   "buymeacoffee_username": "jcook3701",
   "company": "Cook's Code, Inc.",

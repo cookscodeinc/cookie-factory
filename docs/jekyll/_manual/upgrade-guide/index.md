@@ -12,8 +12,9 @@ nav_order: 7
 
 1. Check out the desired branch or tag in the sibling
    `github-docs-cookiecutter` repository.
-2. Confirm `.env` points to that checkout.
-3. Regenerate and validate the documentation.
+2. Confirm its `cookiecutters.yml` ref and local checkout branch agree.
+3. Confirm `.env` points `COOKIECUTTER_ROOT` to the templates' parent directory.
+4. Regenerate and validate the documentation.
 
 ```shell
 make docs-generate

@@ -9,11 +9,11 @@ parent: "Introduction"
 
 ## Installation guide for Cookie Factory
 
-Clone both repositories under a common parent directory:
+Clone Cookie Factory and the enabled template repositories under a common
+parent directory. The catalog supplies the tested branches:
 
 ```shell
 git clone https://github.com/jcook3701/cookie-factory.git
-git clone https://github.com/jcook3701/github-docs-cookiecutter.git
 cd cookie-factory
 ```
 
@@ -23,14 +23,16 @@ Create the local Compose configuration:
 cp .env.example .env
 ```
 
-Edit `.env` so `GITHUB_DOCS_TEMPLATE_DIR` points to the absolute path of the
-second checkout. If the host user does not use UID and GID `1000`, update
-`LOCAL_UID` and `LOCAL_GID` as well.
+Edit `.env` so `COOKIECUTTER_ROOT` points to the absolute parent containing the
+directories listed by `make templates-list`. If the host user does not use UID
+and GID `1000`, update `LOCAL_UID` and `LOCAL_GID` as well.
 
 Build and verify the environment:
 
 ```shell
 make build
+make templates-list
+make templates-validate
 make verify
 ```
 

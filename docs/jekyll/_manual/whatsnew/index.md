@@ -12,7 +12,9 @@ nav_order: 8
 
 - Added the pinned Docker Compose and VS Code Dev Container toolchain.
 - Added offline linting and pre-commit policy.
-- Added upstream `feat-024` template tests and representative generation.
+- Added a manifest-driven catalog for five enabled Cookiecutters.
+- Added 41 upstream bake tests and representative GitHub Docs generation.
+- Recorded the structurally incomplete TypeScript template as disabled.
 - Added networked remote-theme verification.
 - Separated local pre-commit, container CI, and tag-triggered GitHub Releases.
 - Added pinned git-cliff release notes and guarded release validation.

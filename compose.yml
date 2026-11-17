@@ -32,15 +32,15 @@ x-test-service: &test-service
       target: /workspace
       read_only: true
     - type: bind
-      source: ${GITHUB_DOCS_TEMPLATE_DIR:?Set GITHUB_DOCS_TEMPLATE_DIR in .env}
-      target: /template
+      source: ${COOKIECUTTER_ROOT:?Set COOKIECUTTER_ROOT in .env}
+      target: /templates
       read_only: true
   environment:
     BUNDLE_GEMFILE: /opt/jekyll/Gemfile
     CI: "1"
     HOME: /tmp/home
     RUFF_CACHE_DIR: /tmp/ruff-cache
-    TEMPLATE_ROOT: /template
+    COOKIECUTTER_ROOT: /templates
     XDG_CACHE_HOME: /tmp/cache
 
 services:
@@ -54,14 +54,14 @@ services:
         source: .
         target: /workspace
       - type: bind
-        source: ${GITHUB_DOCS_TEMPLATE_DIR:?Set GITHUB_DOCS_TEMPLATE_DIR in .env}
-        target: /template
+        source: ${COOKIECUTTER_ROOT:?Set COOKIECUTTER_ROOT in .env}
+        target: /templates
         read_only: true
       - type: volume
         source: dev-home
         target: /home/vscode
     environment:
-      TEMPLATE_ROOT: /template
+      COOKIECUTTER_ROOT: /templates
 
   test:
     <<: *test-service
@@ -102,7 +102,7 @@ services:
       CI: "1"
       HOME: /tmp/home
       SKIP_UPSTREAM_TESTS: "1"
-      TEMPLATE_ROOT: /template
+      COOKIECUTTER_ROOT: /templates
       XDG_CACHE_HOME: /tmp/cache
 
 volumes:

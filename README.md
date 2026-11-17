@@ -12,13 +12,13 @@ It uses the `dev` service in `compose.yml` and installs the Python, ShellCheck,
 YAML, and Codex extensions inside that environment.
 
 1. Copy `.env.example` to `.env`.
-2. Set `GITHUB_DOCS_TEMPLATE_DIR` to an absolute path containing a clean checkout
-   of `github-docs-cookiecutter`.
+2. Set `COOKIECUTTER_ROOT` to the absolute parent directory containing the
+   template checkouts declared in `cookiecutters.yml`.
 3. In VS Code, run **Dev Containers: Reopen in Container**.
 
-The development container mounts Cookie Factory read/write and the GitHub Docs
-template read-only. It does not mount the Docker socket, host home directory,
-SSH keys, or cloud credentials.
+The development container mounts Cookie Factory read/write and the complete
+template root read-only at `/templates`. It does not mount the Docker socket,
+host home directory, SSH keys, or cloud credentials.
 
 ## Verification
 
@@ -67,8 +67,10 @@ Run deterministic tests without runtime network access:
 make test
 ```
 
-This runs the complete upstream `feat-024` pytest suite, a real Cookie Factory
-generation, and assertions over the generated GitHub Pages routing and content.
+This runs Cookie Factory's tests, all 41 upstream bake tests from the five
+enabled templates, a real GitHub Docs generation, and assertions over the
+generated GitHub Pages routing and content. TypeScript remains cataloged but is
+skipped with its structural failure recorded explicitly.
 
 Run a real Jekyll remote-theme build when network verification is required:
 
@@ -200,6 +202,40 @@ binary artifact, so GitHub's source archives are sufficient. GitHub Pages is
 the continuously published Jekyll documentation site and does not establish a
 software version or release.
 
+## Template catalog and generation
+
+`cookiecutters.yml` is the canonical inventory. It records each local directory,
+GitHub repository, tested ref, enablement state, and upstream test interface.
+Validate the catalog and its read-only local checkouts with:
+
+```shell
+make templates-list
+make templates-validate
+```
+
+Generate an enabled template with its defaults into `build/generated`:
+
+```shell
+make generate TEMPLATE=python3
+```
+
+Use the generic wrapper for context overrides:
+
+```shell
+./cookie-factory.sh generate python3 \
+  --set project_name=example_project \
+  --set license=GPL-3.0-or-later
+```
+
+Available enabled IDs are `ansible-galaxy`, `cookiecutter`, `github-docs`,
+`python3`, and `sphinx`. The `typescript` entry is intentionally disabled
+because that repository does not yet contain a templated project directory.
+Attempting to generate a disabled entry fails with the recorded reason.
+
+Cookie Factory never writes to template repositories. Compose mounts the
+entire template root read-only, while generated projects go to `build/` or a
+caller-selected output directory.
+
 ## GitHub Docs generation
 
 The host-friendly defaults still work when the Nutri-Matic virtual environment
@@ -213,7 +249,7 @@ Container and CI callers override paths without modifying the script:
 
 ```shell
 CI=1 \
-COOKIE_REPO=/template \
+COOKIE_REPO=/templates/github-doc-cookiecutter \
 BRANCH= \
 PYTHON_ACTIVATE= \
 OUTPUT_DIR=/output \
@@ -232,12 +268,12 @@ The generated source is installed at `docs/jekyll`. Review the resulting diff
 before committing an upstream template update. The published site is available
 at [jcook3701.github.io/cookie-factory](https://jcook3701.github.io/cookie-factory).
 
-## Other generators
+## Legacy generator entry points
 
-- `cookie-cookie.sh`: Cookiecutter template projects
-- `ansible-galaxy-cookie.sh`: Ansible Galaxy projects
-- `python-3-cookie.sh`: Python projects
-- `template-generator.sh`: legacy configurable template wrapper
+The older `cookie-cookie.sh`, `ansible-galaxy-cookie.sh`, `python-3-cookie.sh`,
+and `template-generator.sh` scripts remain for compatibility. New automation
+should use `cookie-factory.sh` and the catalog IDs so every template shares the
+same container and validation path.
 
 ## Kubernetes
 

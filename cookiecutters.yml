@@ -1,0 +1,54 @@
+schema_version: 1
+
+templates:
+  - id: ansible-galaxy
+    name: Ansible Galaxy Cookiecutter
+    directory: ansible-galaxy-cookiecutter
+    repository: ansible-galaxy-cookiecutter
+    ref: feat-011
+    enabled: true
+    upstream_tests: true
+
+  - id: cookiecutter
+    name: Cookiecutter Cookiecutter
+    directory: cookiecutter-cookiecutter
+    repository: cookiecutter-cookiecutter
+    ref: feat-033
+    enabled: true
+    upstream_tests: true
+
+  - id: github-docs
+    name: GitHub Docs Cookiecutter
+    directory: github-doc-cookiecutter
+    repository: github-docs-cookiecutter
+    ref: feat-024
+    enabled: true
+    upstream_tests: true
+    integration: github-docs
+
+  - id: python3
+    name: Python 3 Cookiecutter
+    directory: python3-cookiecutter
+    repository: python3-cookiecutter
+    ref: feat-003
+    enabled: true
+    upstream_tests: true
+
+  - id: sphinx
+    name: Sphinx Cookiecutter
+    directory: sphinx-cookiecutter
+    repository: sphinx-cookiecutter
+    ref: feat-008
+    enabled: true
+    upstream_tests: true
+
+  - id: typescript
+    name: TypeScript Cookiecutter
+    directory: typescript-cookiecutter
+    repository: typescript-cookiecutter
+    ref: master
+    enabled: false
+    upstream_tests: false
+    disabled_reason: >-
+      The repository has no templated project directory and Cookiecutter raises
+      NonTemplatedInputDirException. Repair the template before enabling it.

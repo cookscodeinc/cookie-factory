@@ -12,7 +12,7 @@ parent: "Setup Guide"
 - Git
 - Docker Engine with the Compose v2 plugin
 - A local checkout of Cookie Factory
-- A local checkout of `github-docs-cookiecutter` on the branch being validated
+- Local checkouts of every enabled entry in `cookiecutters.yml`
 - Enough disk space for the pinned multi-language toolchain image
 
 VS Code plus the Dev Containers extension is recommended for interactive work,

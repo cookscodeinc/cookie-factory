@@ -3,8 +3,9 @@
 ## Purpose
 
 Cookie Factory provides repeatable wrapper scripts for generating Cook's Code
-projects. The GitHub Pages integration is validated against the sibling
-`github-docs-cookiecutter` repository.
+projects. `cookiecutters.yml` catalogs every supported sibling template; all
+enabled upstream bake suites run in the shared container. GitHub Docs also has
+a generated-site integration build.
 
 ## Canonical verification
 
@@ -14,12 +15,14 @@ Cookiecutter, Jekyll, or ShellCheck installations.
 - Run `make lint` for the complete offline repository lint suite.
 - Run `make pre-commit` locally to exercise every hook against all tracked
   files; it is intentionally not a CI or `make verify` stage.
-- Run `make test` for upstream template tests and representative generation.
+- Run `make test` for every enabled upstream template and representative GitHub
+  Docs generation.
 - Run `make site-test` when a real networked Jekyll remote-theme build matters.
 - Run `make verify` before handing off changes to container or generation logic;
   it rebuilds the current toolchain before running all CI-equivalent stages.
 - Run `make docs-generate` to replace `docs/jekyll` from the mounted GitHub Docs
   template, then review and restore intentional project-specific prose.
+- Run `make templates-validate` after catalog, checkout, or template-ref changes.
 
 The services use disposable output directories and contain no production
 credentials. It is safe to rerun a failed service after making an in-scope fix.
@@ -32,6 +35,8 @@ credentials. It is safe to rerun a failed service after making an in-scope fix.
 - Network access in `site-test` is limited to resolving and building the remote
   Jekyll theme.
 - Keep the source and template mounts read-only in test services.
+- Keep all sibling template checkouts under the parent configured by
+  `COOKIECUTTER_ROOT`; containers mount it read-only at `/templates`.
 - Keep auxiliary repository checkouts outside the Cookie Factory source tree;
   filesystem-glob linters must not traverse a sibling project's files.
 - Keep pre-commit hooks local and system-language so they reuse the pinned image.
@@ -44,6 +49,15 @@ credentials. It is safe to rerun a failed service after making an in-scope fix.
   and CI.
 - Validate deletion targets before recursive removal.
 - Preserve unrelated working-tree changes.
+
+## Template catalog
+
+- Keep repository metadata, refs, local directory names, and enablement in
+  `cookiecutters.yml`; do not duplicate template selection logic in wrappers.
+- Every enabled template must expose an automated verification interface.
+- A disabled template must include a specific reason and must fail clearly when
+  selected for generation.
+- Never modify sibling template repositories while working on Cookie Factory.
 
 ## Licensing
 
