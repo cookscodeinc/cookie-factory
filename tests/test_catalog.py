@@ -13,11 +13,16 @@ CATALOG_PATH = PROJECT_ROOT / "cookiecutters.yml"
 CATALOG_SCRIPT = PROJECT_ROOT / "scripts/cookie_factory.py"
 
 
-def catalog_templates() -> list[dict[str, object]]:
-    """Return the checked-in catalog entries."""
+def catalog_document() -> dict[str, object]:
+    """Return the checked-in catalog document."""
     document = yaml.safe_load(CATALOG_PATH.read_text(encoding="utf-8"))
     assert document["schema_version"] == 1
-    return document["templates"]
+    return document
+
+
+def catalog_templates() -> list[dict[str, object]]:
+    """Return the checked-in catalog entries."""
+    return catalog_document()["templates"]
 
 
 def test_catalog_covers_every_local_cookiecutter() -> None:
@@ -58,6 +63,8 @@ def test_ci_checkouts_match_enabled_catalog() -> None:
     """Keep GitHub's sibling checkouts aligned with the canonical catalog."""
     workflow_path = PROJECT_ROOT / ".github/workflows/container-tests.yml"
     workflow = yaml.load(workflow_path.read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
+    repository_owner = catalog_document()["repository_owner"]
+    assert workflow["jobs"]["verify"]["env"]["TEMPLATE_REPOSITORY_OWNER"] == repository_owner
     steps = workflow["jobs"]["verify"]["steps"]
     auxiliary = {
         step["with"]["path"].removeprefix("templates/"): step["with"]
@@ -67,8 +74,10 @@ def test_ci_checkouts_match_enabled_catalog() -> None:
 
     enabled_templates = [template for template in catalog_templates() if template["enabled"]]
     enabled = {template["directory"]: template for template in enabled_templates}
+    owner_expression = "${{ env.TEMPLATE_REPOSITORY_OWNER }}"
     assert set(auxiliary) == set(enabled)
     for directory, template in enabled.items():
         checkout = auxiliary[directory]
-        assert checkout["repository"].endswith(f"/{template['repository']}")
+        expected_repository = f"{owner_expression}/{template['repository']}"
+        assert checkout["repository"] == expected_repository
         assert checkout["ref"] == template["ref"]

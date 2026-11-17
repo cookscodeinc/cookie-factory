@@ -9,9 +9,10 @@ parent: "Tutorials"
 
 ## Use the Cookiecutter catalog
 
-`cookiecutters.yml` is the canonical inventory for Cookie Factory. Each entry
-declares a stable ID, local directory, GitHub repository, tested ref, enablement
-state, and upstream test interface.
+`cookiecutters.yml` is the canonical inventory for Cookie Factory. It declares
+the personal GitHub source owner, and each entry declares a stable ID, local
+directory, repository, tested ref, enablement state, and upstream test interface.
+The source owner remains independent when Cookie Factory moves to an organization.
 
 Set `COOKIECUTTER_ROOT` in `.env` to the absolute parent containing those local
 checkouts. Containers mount the parent read-only at `/templates`; generated

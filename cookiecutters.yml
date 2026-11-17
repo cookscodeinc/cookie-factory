@@ -1,4 +1,5 @@
 schema_version: 1
+repository_owner: jcook3701
 
 templates:
   - id: ansible-galaxy

@@ -7,6 +7,6 @@ permalink: "/repository/"
 nav_order: 1
 ---
 
-<meta http-equiv="refresh" content="0; url=https://github.com/jcook3701/cookie-factory">
+<meta http-equiv="refresh" content="0; url=https://github.com/cookscodeinc/cookie-factory">
 
-The project source, issue tracker, and contribution history are available in the [Cookie Factory repository](https://github.com/jcook3701/cookie-factory).
+The project source, issue tracker, and contribution history are available in the [Cookie Factory repository](https://github.com/cookscodeinc/cookie-factory).

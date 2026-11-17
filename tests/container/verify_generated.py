@@ -20,10 +20,10 @@ def main() -> None:
         "baseurl": "/cookie-factory",
         "license": "GPL-3.0-or-later",
         "remote_theme": "just-the-docs/just-the-docs@v0.11.0",
-        "repository": "jcook3701/cookie-factory",
+        "repository": "cookscodeinc/cookie-factory",
         "site_type": "documentation",
         "theme_family": "just_the_docs",
-        "url": "https://jcook3701.github.io",
+        "url": "https://cookscodeinc.github.io",
     }
     actual = {key: config.get(key) for key in expected}
     if actual != expected:
