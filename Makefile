@@ -78,7 +78,7 @@ test: config ## Run upstream tests and representative generation checks offline.
 site-test: config ## Run generation checks plus a networked Jekyll build.
 	docker compose run --rm site-test
 
-verify: lint test site-test ## Run the complete CI-equivalent verification stages.
+verify: build lint test site-test ## Build and run the complete CI-equivalent stages.
 
 help: ## Show available targets.
 	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\nTargets:\n"} /^[a-zA-Z_-]+:.*## / {printf "  %-18s %s\n", $$1, $$2}' $(MAKEFILE_LIST)

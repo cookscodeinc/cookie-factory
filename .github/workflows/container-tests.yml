@@ -21,6 +21,9 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: cookie-factory
     env:
       COOKIE_FACTORY_IMAGE: cookie-factory-toolchain:ci
       GITHUB_DOCS_TEMPLATE_DIR: ${{ github.workspace }}/github-docs-cookiecutter
@@ -28,8 +31,12 @@ jobs:
       LOCAL_UID: "1000"
 
     steps:
+      # Keep the source and auxiliary template as siblings. Filesystem-glob
+      # linters must never traverse the template repository.
       - name: Check out Cookie Factory
         uses: actions/checkout@v5
+        with:
+          path: cookie-factory
 
       - name: Check out GitHub Docs Cookiecutter
         uses: actions/checkout@v5
@@ -44,8 +51,8 @@ jobs:
       - name: Build test toolchain
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: docker/Dockerfile
+          context: ./cookie-factory
+          file: ./cookie-factory/docker/Dockerfile
           load: true
           push: false
           tags: cookie-factory-toolchain:ci

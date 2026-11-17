@@ -82,6 +82,10 @@ Run the complete CI-equivalent lint and test stages:
 make verify
 ```
 
+This rebuilds the current Dockerfile through the build cache before running the
+same lint, test, and site-test services used by GitHub Actions, preventing a
+stale local image from hiding a CI failure.
+
 GitHub Actions uses the same image and Compose services, so local and CI
 verification share one contract. Pre-commit remains a local developer aid; CI
 validates the same relevant policies through the independent `lint` service

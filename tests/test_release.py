@@ -240,7 +240,19 @@ def test_release_workflow_cannot_publish_from_branch_pushes() -> None:
     assert set(publish_needs) == {"validate", "verify"}
     assert "if" not in jobs["publish"]
 
-    container_workflow = (PROJECT_ROOT / ".github/workflows/container-tests.yml").read_text(
-        encoding="utf-8"
-    )
-    assert "docker compose run --rm hooks" not in container_workflow
+
+def test_ci_keeps_auxiliary_checkout_outside_source_tree() -> None:
+    """Keep foreign template files outside the repository lint boundary."""
+    workflow_path = PROJECT_ROOT / ".github/workflows/container-tests.yml"
+    workflow_text = workflow_path.read_text(encoding="utf-8")
+    workflow = yaml.load(workflow_text, Loader=yaml.BaseLoader)
+    verify = workflow["jobs"]["verify"]
+    steps = {step["name"]: step for step in verify["steps"]}
+
+    assert verify["defaults"]["run"]["working-directory"] == "cookie-factory"
+    assert steps["Check out Cookie Factory"]["with"]["path"] == "cookie-factory"
+    assert steps["Check out GitHub Docs Cookiecutter"]["with"]["path"] == "github-docs-cookiecutter"
+    build_inputs = steps["Build test toolchain"]["with"]
+    assert build_inputs["context"] == "./cookie-factory"
+    assert build_inputs["file"] == "./cookie-factory/docker/Dockerfile"
+    assert "docker compose run --rm hooks" not in workflow_text

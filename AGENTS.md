@@ -16,7 +16,8 @@ Cookiecutter, Jekyll, or ShellCheck installations.
   files; it is intentionally not a CI or `make verify` stage.
 - Run `make test` for upstream template tests and representative generation.
 - Run `make site-test` when a real networked Jekyll remote-theme build matters.
-- Run `make verify` before handing off changes to container or generation logic.
+- Run `make verify` before handing off changes to container or generation logic;
+  it rebuilds the current toolchain before running all CI-equivalent stages.
 - Run `make docs-generate` to replace `docs/jekyll` from the mounted GitHub Docs
   template, then review and restore intentional project-specific prose.
 
@@ -31,6 +32,8 @@ credentials. It is safe to rerun a failed service after making an in-scope fix.
 - Network access in `site-test` is limited to resolving and building the remote
   Jekyll theme.
 - Keep the source and template mounts read-only in test services.
+- Keep auxiliary repository checkouts outside the Cookie Factory source tree;
+  filesystem-glob linters must not traverse a sibling project's files.
 - Keep pre-commit hooks local and system-language so they reuse the pinned image.
 - Pin Python, Ruby, and Node.js dependencies and update their locks deliberately.
 
