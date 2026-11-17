@@ -1,0 +1,13 @@
+.codex/
+.git/
+.github/
+.venv/
+build/
+*-cookiecutter/
+templates/
+node_modules/
+.env
+*.egg-info/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/

@@ -1,0 +1,100 @@
+name: Publish GitHub Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      notes: ${{ steps.metadata.outputs.notes }}
+      prerelease: ${{ steps.metadata.outputs.prerelease }}
+    steps:
+      - name: Check out complete tagged history
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Fetch master reference
+        run: git fetch --no-tags origin master:refs/remotes/origin/master
+
+      - name: Install pinned git-cliff
+        run: |
+          tool_dir="$RUNNER_TEMP/git-cliff-bin"
+          scripts/install-git-cliff.sh "$tool_dir"
+          printf '%s\n' "$tool_dir" >>"$GITHUB_PATH"
+
+      - name: Validate release and generate notes
+        id: metadata
+        env:
+          ALLOW_PRERELEASE: ${{ vars.RELEASE_ALLOW_PRERELEASE == 'true' && 'true' || 'false' }}
+          CHECK_REMOTE_RELEASE: "true"
+          GH_TOKEN: ${{ github.token }}
+          MASTER_REF: origin/master
+          RELEASE_COMMIT: ${{ github.sha }}
+          RELEASE_NOTES_FILE: ${{ runner.temp }}/release-notes.md
+          RELEASE_TAG: ${{ github.ref_name }}
+          REQUIRE_MASTER_BRANCH: "false"
+          REQUIRE_TAG: "true"
+        run: |
+          scripts/release.sh notes
+          prerelease="$(scripts/release.sh prerelease)"
+          delimiter="release-notes-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          {
+            printf 'notes<<%s\n' "$delimiter"
+            cat "$RELEASE_NOTES_FILE"
+            printf '%s\n' "$delimiter"
+            printf 'prerelease=%s\n' "$prerelease"
+          } >>"$GITHUB_OUTPUT"
+
+  verify:
+    needs: validate
+    permissions:
+      contents: read
+    uses: ./.github/workflows/container-tests.yml
+
+  publish:
+    needs:
+      - validate
+      - verify
+    runs-on: ubuntu-latest
+    environment: github-release
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_NOTES: ${{ needs.validate.outputs.notes }}
+      RELEASE_TAG: ${{ github.ref_name }}
+    steps:
+      - name: Publish verified GitHub Release
+        env:
+          IS_PRERELEASE: ${{ needs.validate.outputs.prerelease }}
+        run: |
+          notes_file="$RUNNER_TEMP/release-notes.md"
+          printf '%s\n' "$RELEASE_NOTES" >"$notes_file"
+          test -s "$notes_file"
+          grep -Eq '^## ' "$notes_file"
+          grep -Eq '^- ' "$notes_file"
+
+          release_args=(
+            "$RELEASE_TAG"
+            --repo "$GITHUB_REPOSITORY"
+            --verify-tag
+            --title "$RELEASE_TAG"
+            --notes-file "$notes_file"
+          )
+          if [[ "$IS_PRERELEASE" == "true" ]]; then
+            release_args+=(--prerelease)
+          fi
+          gh release create "${release_args[@]}"

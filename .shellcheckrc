@@ -1,0 +1,21 @@
+# ShellCheck configuration
+# Place at the repository root for use by ShellCheck and the VS Code extension.
+# Reference: https://github.com/koalaman/shellcheck/blob/master/shellcheck.1.md#rc-files
+
+# Follow source/. statements into local helper scripts.
+external-sources=true
+
+# Resolve sourced files relative to the script being checked.
+source-path=SCRIPTDIR
+
+# Encourage quoting variables even when their current values appear safe.
+enable=quote-safe-variables
+
+# Let ShellCheck determine the shell from each script's shebang.
+# For Bash scripts, use: #!/usr/bin/env bash
+
+# Keep rules enabled by default. If a specific warning is intentional,
+# suppress it narrowly in that script, e.g. # shellcheck disable=SC2034.
+
+# Note: .shellcheckrc does not exclude files. Lint rendered .sh files,
+# not Jinja2 source templates containing {% ... %} / {{ ... }} syntax.

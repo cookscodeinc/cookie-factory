@@ -1,0 +1,13 @@
+{
+  "proseWrap": "preserve",
+  "tabWidth": 2,
+  "useTabs": false,
+  "overrides": [
+    {
+      "files": "cspell.json",
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
+}

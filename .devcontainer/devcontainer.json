@@ -1,0 +1,29 @@
+{
+  "name": "Cookie Factory",
+  "dockerComposeFile": "../compose.yml",
+  "service": "dev",
+  "runServices": ["dev"],
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "charliermarsh.ruff",
+        "ms-python.python",
+        "openai.chatgpt",
+        "redhat.vscode-yaml",
+        "DavidAnson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker",
+        "timonwong.shellcheck"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/opt/venv/bin/python",
+        "ruff.importStrategy": "fromEnvironment",
+        "shellcheck.executablePath": "/usr/bin/shellcheck"
+      }
+    }
+  },
+  "postCreateCommand": "python --version && ruby --version && node --version && npm --version && git-cliff --version && pre-commit --version && shellcheck --version"
+}
