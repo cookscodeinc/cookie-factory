@@ -11,7 +11,7 @@ nav_order: 6
 ### Update the GitHub Docs template
 
 1. Check out the desired branch or tag in the sibling
-   `github-doc-cookiecutter` repository.
+   `github-docs-cookiecutter` repository.
 2. Confirm `.env` points to that checkout.
 3. Regenerate and validate the documentation.
 

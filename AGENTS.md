@@ -4,7 +4,7 @@
 
 Cookie Factory provides repeatable wrapper scripts for generating Cook's Code
 projects. The GitHub Pages integration is validated against the sibling
-`github-doc-cookiecutter` repository.
+`github-docs-cookiecutter` repository.
 
 ## Canonical verification
 

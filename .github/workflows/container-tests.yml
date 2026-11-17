@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 30
     env:
       COOKIE_FACTORY_IMAGE: cookie-factory-toolchain:ci
-      GITHUB_DOCS_TEMPLATE_DIR: ${{ github.workspace }}/github-doc-cookiecutter
+      GITHUB_DOCS_TEMPLATE_DIR: ${{ github.workspace }}/github-docs-cookiecutter
       LOCAL_GID: "1000"
       LOCAL_UID: "1000"
 
@@ -33,9 +33,9 @@ jobs:
       - name: Check out GitHub Docs Cookiecutter
         uses: actions/checkout@v5
         with:
-          repository: jcook3701/github-doc-cookiecutter
+          repository: jcook3701/github-docs-cookiecutter
           ref: feat-024
-          path: github-doc-cookiecutter
+          path: github-docs-cookiecutter
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

@@ -13,7 +13,7 @@ YAML, and Codex extensions inside that environment.
 
 1. Copy `.env.example` to `.env`.
 2. Set `GITHUB_DOCS_TEMPLATE_DIR` to an absolute path containing a clean checkout
-   of `github-doc-cookiecutter`.
+   of `github-docs-cookiecutter`.
 3. In VS Code, run **Dev Containers: Reopen in Container**.
 
 The development container mounts Cookie Factory read/write and the GitHub Docs
@@ -107,7 +107,7 @@ OUTPUT_DIR=/output \
 
 The representative build generates Cookie Factory documentation using the
 pinned Just the Docs theme and GitHub Project Pages routing. Regenerate the
-checked-in site from the mounted `github-doc-cookiecutter` checkout with:
+checked-in site from the mounted `github-docs-cookiecutter` checkout with:
 
 ```shell
 make docs-generate

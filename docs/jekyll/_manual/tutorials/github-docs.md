@@ -10,7 +10,7 @@ parent: "Tutorials"
 ## Generate GitHub documentation
 
 Set `GITHUB_DOCS_TEMPLATE_DIR` in `.env` to the absolute path of a clean
-`github-doc-cookiecutter` checkout. Cookie Factory mounts that checkout
+`github-docs-cookiecutter` checkout. Cookie Factory mounts that checkout
 read-only at `/template`.
 
 Generate the documentation site with:

@@ -10,7 +10,7 @@ parent: "Introduction"
 ## Getting started with Cookie Factory
 
 1. Install the [host requirements]({% link _manual/setup-guide/requirements.md %}).
-2. Clone Cookie Factory and `github-doc-cookiecutter` as sibling repositories.
+2. Clone Cookie Factory and `github-docs-cookiecutter` as sibling repositories.
 3. Copy `.env.example` to `.env` and set `GITHUB_DOCS_TEMPLATE_DIR` to the
    absolute template checkout path.
 4. Build the pinned toolchain and run the complete verification suite.

@@ -14,5 +14,5 @@ nav_order: 7
 - Added offline linting and pre-commit policy.
 - Added upstream `feat-024` template tests and representative generation.
 - Added networked remote-theme verification.
-- Generated this Just the Docs site from `github-doc-cookiecutter`.
+- Generated this Just the Docs site from `github-docs-cookiecutter`.
 - Adopted the GPL-3.0-or-later license.
