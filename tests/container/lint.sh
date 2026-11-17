@@ -6,6 +6,12 @@ script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cd -- "$script_dir/../.." && pwd)}"
 cd "$WORKSPACE_ROOT"
 
+printf '%s\n' '==> Container Git safety'
+if ! git config --system --get-all safe.directory | grep --fixed-strings --line-regexp -- "$WORKSPACE_ROOT"; then
+	printf 'Container image does not trust the exact workspace path: %s\n' "$WORKSPACE_ROOT" >&2
+	exit 1
+fi
+
 printf '%s\n' '==> pre-commit configuration'
 pre-commit validate-config .pre-commit-config.yaml
 

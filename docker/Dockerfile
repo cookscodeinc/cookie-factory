@@ -42,6 +42,7 @@ RUN apt-get update \
         ruby-full \
         shellcheck \
     && rm -rf /var/lib/apt/lists/* \
+    && git config --system --add safe.directory /workspace \
     && groupadd --gid "${USER_GID}" "${DEV_USER}" \
     && useradd --uid "${USER_UID}" --gid "${USER_GID}" --create-home --shell /bin/bash "${DEV_USER}"
 

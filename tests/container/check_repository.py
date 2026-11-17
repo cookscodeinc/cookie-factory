@@ -31,9 +31,12 @@ def repository_files(root: Path) -> list[Path]:
             "-z",
         ],
         cwd=root,
-        check=True,
+        check=False,
         capture_output=True,
     )
+    if result.returncode:
+        details = result.stderr.decode(errors="replace").strip()
+        raise SystemExit(f"Unable to enumerate repository files with Git:\n{details}")
     return [root / path.decode() for path in result.stdout.split(b"\0") if path]
 
 
