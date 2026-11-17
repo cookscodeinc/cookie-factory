@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - develop
-      - feat-01
+      - "feat-*"
       - master
   workflow_dispatch:
 
