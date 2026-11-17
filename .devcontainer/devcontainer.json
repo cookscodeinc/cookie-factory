@@ -25,5 +25,5 @@
       }
     }
   },
-  "postCreateCommand": "python --version && ruby --version && node --version && npm --version && pre-commit --version && shellcheck --version"
+  "postCreateCommand": "python --version && ruby --version && node --version && npm --version && git-cliff --version && pre-commit --version && shellcheck --version"
 }

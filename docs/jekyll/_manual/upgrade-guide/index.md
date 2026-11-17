@@ -3,7 +3,7 @@ layout: "default"
 title: "Upgrade Guide"
 description: "Upgrade the project safely between releases."
 author: "Jared Cook"
-nav_order: 6
+nav_order: 7
 ---
 
 ## Cookie Factory upgrade guide

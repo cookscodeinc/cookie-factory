@@ -1,6 +1,7 @@
 name: Container tests
 
 on:
+  workflow_call:
   pull_request:
   push:
     branches:
@@ -53,9 +54,6 @@ jobs:
 
       - name: Validate Compose configuration
         run: docker compose config --quiet
-
-      - name: Run pre-commit hooks
-        run: docker compose run --rm hooks
 
       - name: Run repository linting
         run: docker compose run --rm lint

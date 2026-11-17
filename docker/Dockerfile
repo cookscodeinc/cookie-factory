@@ -35,6 +35,7 @@ RUN apt-get update \
         bash \
         build-essential \
         ca-certificates \
+        curl \
         git \
         make \
         ruby-dev \
@@ -51,6 +52,10 @@ RUN ln --symbolic ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
 COPY --from=node-tools /opt/lint/node_modules /opt/lint/node_modules
 COPY --from=hadolint /bin/hadolint /usr/local/bin/hadolint
 COPY --from=actionlint /usr/local/bin/actionlint /usr/local/bin/actionlint
+
+COPY scripts/install-git-cliff.sh /opt/cookie-factory/install-git-cliff.sh
+RUN /opt/cookie-factory/install-git-cliff.sh /usr/local/bin \
+    && rm /opt/cookie-factory/install-git-cliff.sh
 
 COPY docker/requirements-test.txt /opt/cookie-factory/requirements-test.txt
 RUN python -m venv /opt/venv \

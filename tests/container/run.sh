@@ -14,6 +14,12 @@ if [[ ! -f "$TEMPLATE_ROOT/cookiecutter.json" ]]; then
 	exit 1
 fi
 
+printf '%s\n' '==> Cookie Factory tests'
+python -m pytest \
+	--quiet \
+	-p no:cacheprovider \
+	"$WORKSPACE_ROOT/tests"
+
 if [[ "${SKIP_UPSTREAM_TESTS:-0}" != "1" ]]; then
 	printf '%s\n' '==> Upstream template tests'
 	python -m pytest \

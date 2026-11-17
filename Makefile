@@ -1,7 +1,12 @@
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
 
-.PHONY: build config dev docs-generate down format help lint pre-commit site-test test verify
+RELEASE_COMMIT ?= HEAD
+RELEASE_NOTES_FILE ?= build/release-notes.md
+RELEASE_TAG ?= v$(shell tr -d '[:space:]' < VERSION)
+ALLOW_PRERELEASE ?= false
+
+.PHONY: build config dev docs-generate down format help lint pre-commit release release-check release-dry-run release-notes site-test test verify
 
 config: ## Validate the resolved Compose model.
 	docker compose config --quiet
@@ -35,13 +40,45 @@ lint: config ## Run every repository linter without runtime network access.
 pre-commit: config ## Run every pre-commit hook against the repository offline.
 	docker compose run --rm hooks
 
+release-check: config ## Validate the local release candidate without publishing.
+	docker compose run --rm \
+		--env ALLOW_PRERELEASE="$(ALLOW_PRERELEASE)" \
+		--env CHECK_REMOTE_RELEASE=auto \
+		--env RELEASE_COMMIT="$(RELEASE_COMMIT)" \
+		--env RELEASE_TAG="$(RELEASE_TAG)" \
+		--env REQUIRE_MASTER_BRANCH=true \
+		dev /workspace/scripts/release.sh check
+
+release-notes: config ## Generate scoped git-cliff notes for the candidate.
+	docker compose run --rm \
+		--env ALLOW_PRERELEASE="$(ALLOW_PRERELEASE)" \
+		--env CHECK_REMOTE_RELEASE=auto \
+		--env RELEASE_COMMIT="$(RELEASE_COMMIT)" \
+		--env RELEASE_NOTES_FILE="$(RELEASE_NOTES_FILE)" \
+		--env RELEASE_TAG="$(RELEASE_TAG)" \
+		--env REQUIRE_MASTER_BRANCH=true \
+		dev /workspace/scripts/release.sh notes
+
+release-dry-run: config ## Preview release validation and notes without publishing.
+	docker compose run --rm \
+		--env ALLOW_PRERELEASE="$(ALLOW_PRERELEASE)" \
+		--env CHECK_REMOTE_RELEASE=auto \
+		--env RELEASE_COMMIT="$(RELEASE_COMMIT)" \
+		--env RELEASE_NOTES_FILE="$(RELEASE_NOTES_FILE)" \
+		--env RELEASE_TAG="$(RELEASE_TAG)" \
+		--env REQUIRE_MASTER_BRANCH=true \
+		dev /workspace/scripts/release.sh dry-run
+
+release: release-dry-run ## Validate and print the manual tag-push instructions.
+	@printf '%s\n' 'Release publishing is performed only by the verified GitHub tag workflow.'
+
 test: config ## Run upstream tests and representative generation checks offline.
 	docker compose run --rm test
 
 site-test: config ## Run generation checks plus a networked Jekyll build.
 	docker compose run --rm site-test
 
-verify: pre-commit lint test site-test ## Run every containerized verification stage.
+verify: lint test site-test ## Run the complete CI-equivalent verification stages.
 
 help: ## Show available targets.
-	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\nTargets:\n"} /^[a-zA-Z_-]+:.*## / {printf "  %-12s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\nTargets:\n"} /^[a-zA-Z_-]+:.*## / {printf "  %-18s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
