@@ -18,7 +18,7 @@ GEM
       logger
     faraday-net_http (3.5.0)
       net-http (~> 0.5)
-    faraday-retry (2.3.2)
+    faraday-retry (2.4.0)
       faraday (~> 2.0)
     ffi (1.17.2)
     forwardable-extended (2.6.0)
@@ -116,7 +116,7 @@ DEPENDENCIES
   bigdecimal
   csv
   faraday (~> 2.15)
-  faraday-retry (~> 2.3)
+  faraday-retry (~> 2.4)
   jekyll (~> 4.4)
   jekyll-github-metadata (~> 2.16)
   jekyll-include-cache (~> 0.2)
