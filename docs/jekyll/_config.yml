@@ -5,12 +5,12 @@
 # -----------------------------------------------------------------------------
 title: "Cookie Factory"
 description: "Containerized project generators for repeatable Cook's Code repositories."
-author: "Jared Cook"
+author: "Jared W. Cook"
 company: "Cook's Code, Inc."
-email: "jcook3701+github@gmail.com"
+email: "cookscodeinc+github@gmail.com"
 version: "0.1.0"
 license: "GPL-3.0-or-later"
-copyright: "Copyright (c) 2026, Jared Cook"
+copyright: "Copyright (c) 2026, Jared W. Cook"
 timezone: "America/Los_Angeles"
 site_type: "documentation"
 url: "https://jcook3701.github.io"
@@ -83,7 +83,7 @@ nav_enabled: true
 back_to_top: true
 back_to_top_text: "Back to top"
 footer_content: >-
-  Copyright (c) 2026, Jared Cook. Distributed under the
+  Copyright (c) 2026, Jared W. Cook. Distributed under the
   <a href="https://github.com/cookscodeinc/cookie-factory/blob/master/LICENSE.md">GPL-3.0-or-later license</a>.
 last_edit_timestamp: true
 last_edit_time_format: "%b %e %Y at %I:%M %p"

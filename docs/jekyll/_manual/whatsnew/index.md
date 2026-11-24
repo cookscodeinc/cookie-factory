@@ -2,7 +2,7 @@
 layout: "default"
 title: "What's New"
 description: "Review notable changes in recent releases."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 8
 ---
 

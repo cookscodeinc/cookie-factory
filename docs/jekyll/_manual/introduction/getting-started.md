@@ -2,7 +2,7 @@
 layout: "default"
 title: "Getting Started"
 description: "Take the first steps with the project."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 1
 parent: "Introduction"
 ---

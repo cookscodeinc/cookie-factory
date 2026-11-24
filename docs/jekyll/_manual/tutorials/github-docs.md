@@ -2,7 +2,7 @@
 layout: "default"
 title: "GitHub Docs Generation"
 description: "Generate and update the Just the Docs site from its Cookiecutter."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 3
 parent: "Tutorials"
 ---

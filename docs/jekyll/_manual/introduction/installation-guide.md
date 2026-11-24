@@ -2,7 +2,7 @@
 layout: "default"
 title: "Installation Guide"
 description: "Install the project and its dependencies on Linux."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 2
 parent: "Introduction"
 ---

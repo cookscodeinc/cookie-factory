@@ -288,7 +288,15 @@ Compose test path.
 
 ## Maintainer
 
-Maintained by Jared Cook as part of the Cook's Code cookiecutter ecosystem.
+Maintained by Jared W. Cook for Cook's Code, Inc.
+
+## Contributing and security
+
+Contributions are welcome. Read the [contribution guide](.github/CONTRIBUTING.md)
+and [Contributor License Agreement](.github/CLA.md) before opening a pull
+request. Report suspected vulnerabilities privately according to the
+[security policy](.github/SECURITY.md). Community participation is governed by
+the [Cook's Code, Inc. Code of Conduct](https://github.com/cookscodeinc/.github/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 

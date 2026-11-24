@@ -4,7 +4,7 @@
 [![Container tests](https://github.com/cookscodeinc/cookie-factory/actions/workflows/container-tests.yml/badge.svg)](https://github.com/cookscodeinc/cookie-factory/actions/workflows/container-tests.yml)
 [![Deploy website](https://github.com/cookscodeinc/cookie-factory/actions/workflows/pages.yml/badge.svg)](https://github.com/cookscodeinc/cookie-factory/actions/workflows/pages.yml)
 
-**Author:** Jared Cook
+**Author:** Jared W. Cook
 **Version:** 0.1.0
 **Website:** [https://cookscodeinc.github.io/cookie-factory](https://cookscodeinc.github.io/cookie-factory)
 
@@ -39,12 +39,15 @@ The complete Cookie Factory documentation is available on the
 
 ## Contributing
 
-Issues and pull requests are welcome in the
-[GitHub repository](https://github.com/cookscodeinc/cookie-factory).
+Read the repository's
+[contribution guide](https://github.com/cookscodeinc/cookie-factory/blob/master/.github/CONTRIBUTING.md)
+and
+[Contributor License Agreement](https://github.com/cookscodeinc/cookie-factory/blob/master/.github/CLA.md)
+before opening a pull request.
 
 ## License
 
-Copyright (c) 2026, Jared Cook
+Copyright (c) 2026, Jared W. Cook
 
 This project is licensed under the **GPL-3.0-or-later License**. See the
 [LICENSE](https://github.com/cookscodeinc/cookie-factory/blob/master/LICENSE.md)

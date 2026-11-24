@@ -2,7 +2,7 @@
 layout: "default"
 title: "Cookie Factory on GitHub"
 description: "Open the project repository on GitHub."
-author: "Jared Cook"
+author: "Jared W. Cook"
 permalink: "/repository/"
 nav_order: 1
 ---
