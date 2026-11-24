@@ -2,7 +2,7 @@
 layout: "default"
 title: "Release Guide"
 description: "Prepare and publish a verified Cookie Factory release."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 6
 ---
 

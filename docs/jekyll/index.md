@@ -2,7 +2,7 @@
 layout: "default"
 title: "Cookie Factory"
 description: "Containerized project generators for repeatable Cook's Code repositories."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 1
 ---
 
@@ -14,7 +14,7 @@ nav_order: 1
 
 ## Support the project
 
-If this project helps you, [support its continued development](https://www.buymeacoffee.com/jcook3701) or contribute code on [GitHub](https://github.com/jcook3701/cookie-factory).
+If this project helps you, [support its continued development](https://www.buymeacoffee.com/jcook3701) or contribute code on [GitHub](https://github.com/cookscodeinc/cookie-factory).
 
 ## Connect
 

@@ -2,7 +2,7 @@
 layout: "default"
 title: "Installation Guide"
 description: "Install the project and its dependencies on Linux."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 2
 parent: "Introduction"
 ---
@@ -13,7 +13,7 @@ Clone Cookie Factory and the enabled template repositories under a common
 parent directory. The catalog supplies the tested branches:
 
 ```shell
-git clone https://github.com/jcook3701/cookie-factory.git
+git clone https://github.com/cookscodeinc/cookie-factory.git
 cd cookie-factory
 ```
 

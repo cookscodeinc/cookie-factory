@@ -2,7 +2,7 @@
 layout: "default"
 title: "Tutorials"
 description: "Follow practical, task-oriented project tutorials."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 3
 has_children: true
 ---

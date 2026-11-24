@@ -2,7 +2,7 @@
 layout: "default"
 title: "Troubleshooting"
 description: "Diagnose common project problems."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 5
 has_children: true
 ---
