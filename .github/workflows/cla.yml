@@ -36,7 +36,7 @@ jobs:
           github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA'))
         # Privileged pull_request_target actions must remain pinned to a commit.
         # contributor-license/cla-action v1.0.0
-        uses: contributor-license/cla-action@e764f53690399abf600e2932de7ffd607ddb108c
+        uses: contributor-license/cla-action@2e483ec09841118c52af4716e8875eb9832d1dd2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
