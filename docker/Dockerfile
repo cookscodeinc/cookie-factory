@@ -37,6 +37,7 @@ RUN apt-get update \
         ca-certificates \
         curl \
         git \
+        libssl-dev \
         make \
         ruby-dev \
         ruby-full \
