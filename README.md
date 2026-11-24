@@ -204,8 +204,11 @@ software version or release.
 
 ## Template catalog and generation
 
-`cookiecutters.yml` is the canonical inventory. It records each local directory,
-GitHub repository, tested ref, enablement state, and upstream test interface.
+`cookiecutters.yml` is the canonical inventory. It records the personal source
+owner plus each local directory, GitHub repository, tested ref, enablement state,
+and upstream test interface. This keeps template ownership independent from the
+Cookie Factory repository owner.
+
 Validate the catalog and its read-only local checkouts with:
 
 ```shell
@@ -266,7 +269,7 @@ make docs-generate
 
 The generated source is installed at `docs/jekyll`. Review the resulting diff
 before committing an upstream template update. The published site is available
-at [jcook3701.github.io/cookie-factory](https://jcook3701.github.io/cookie-factory).
+at [cookscodeinc.github.io/cookie-factory](https://cookscodeinc.github.io/cookie-factory).
 
 ## Legacy generator entry points
 
@@ -285,7 +288,15 @@ Compose test path.
 
 ## Maintainer
 
-Maintained by Jared Cook as part of the Cook's Code cookiecutter ecosystem.
+Maintained by Jared W. Cook for Cook's Code, Inc.
+
+## Contributing and security
+
+Contributions are welcome. Read the [contribution guide](.github/CONTRIBUTING.md)
+and [Contributor License Agreement](.github/CLA.md) before opening a pull
+request. Report suspected vulnerabilities privately according to the
+[security policy](.github/SECURITY.md). Community participation is governed by
+the [Cook's Code, Inc. Code of Conduct](https://github.com/cookscodeinc/.github/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 

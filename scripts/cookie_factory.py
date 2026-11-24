@@ -21,6 +21,13 @@ class CatalogError(RuntimeError):
     """Report an invalid template catalog or selection."""
 
 
+def validate_repository_owner(document: dict[str, Any]) -> None:
+    """Require one safe GitHub owner for every cataloged template source."""
+    repository_owner = document.get("repository_owner")
+    if not isinstance(repository_owner, str) or Path(repository_owner).name != repository_owner:
+        raise CatalogError("cookiecutters.yml must declare one safe repository_owner")
+
+
 def template_root() -> Path:
     """Return the configured parent directory containing template checkouts."""
     configured = os.environ.get("COOKIECUTTER_ROOT")
@@ -38,6 +45,7 @@ def load_catalog(path: Path = DEFAULT_CATALOG) -> list[dict[str, Any]]:
 
     if not isinstance(document, dict) or document.get("schema_version") != 1:
         raise CatalogError("cookiecutters.yml must use schema_version: 1")
+    validate_repository_owner(document)
     templates = document.get("templates")
     if not isinstance(templates, list) or not templates:
         raise CatalogError("cookiecutters.yml must contain a nonempty templates list")

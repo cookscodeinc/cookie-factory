@@ -2,7 +2,7 @@
 layout: "default"
 title: "Upgrade Guide"
 description: "Upgrade the project safely between releases."
-author: "Jared Cook"
+author: "Jared W. Cook"
 nav_order: 7
 ---
 

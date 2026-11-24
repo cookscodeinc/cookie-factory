@@ -1,12 +1,12 @@
 # Cookie Factory
 
-[![License](https://img.shields.io/github/license/jcook3701/cookie-factory)](https://github.com/jcook3701/cookie-factory/blob/master/LICENSE.md)
-[![Container tests](https://github.com/jcook3701/cookie-factory/actions/workflows/container-tests.yml/badge.svg)](https://github.com/jcook3701/cookie-factory/actions/workflows/container-tests.yml)
-[![Deploy website](https://github.com/jcook3701/cookie-factory/actions/workflows/pages.yml/badge.svg)](https://github.com/jcook3701/cookie-factory/actions/workflows/pages.yml)
+[![License](https://img.shields.io/github/license/cookscodeinc/cookie-factory)](https://github.com/cookscodeinc/cookie-factory/blob/master/LICENSE.md)
+[![Container tests](https://github.com/cookscodeinc/cookie-factory/actions/workflows/container-tests.yml/badge.svg)](https://github.com/cookscodeinc/cookie-factory/actions/workflows/container-tests.yml)
+[![Deploy website](https://github.com/cookscodeinc/cookie-factory/actions/workflows/pages.yml/badge.svg)](https://github.com/cookscodeinc/cookie-factory/actions/workflows/pages.yml)
 
-**Author:** Jared Cook
+**Author:** Jared W. Cook
 **Version:** 0.1.0
-**Website:** [https://jcook3701.github.io/cookie-factory](https://jcook3701.github.io/cookie-factory)
+**Website:** [https://cookscodeinc.github.io/cookie-factory](https://cookscodeinc.github.io/cookie-factory)
 
 ## Overview
 
@@ -25,29 +25,32 @@ Jekyll, Node.js, or linting tools on the host.
 
 ## Getting started
 
-- [Requirements](https://jcook3701.github.io/cookie-factory/manual/setup-guide/requirements)
-- [Installation guide](https://jcook3701.github.io/cookie-factory/manual/introduction/installation-guide)
-- [Container workflow](https://jcook3701.github.io/cookie-factory/manual/tutorials/container-workflow)
-- [Template catalog](https://jcook3701.github.io/cookie-factory/manual/tutorials/template-catalog)
-- [GitHub Docs generation](https://jcook3701.github.io/cookie-factory/manual/tutorials/github-docs)
-- [Release guide](https://jcook3701.github.io/cookie-factory/manual/release/)
+- [Requirements](https://cookscodeinc.github.io/cookie-factory/manual/setup-guide/requirements)
+- [Installation guide](https://cookscodeinc.github.io/cookie-factory/manual/introduction/installation-guide)
+- [Container workflow](https://cookscodeinc.github.io/cookie-factory/manual/tutorials/container-workflow)
+- [Template catalog](https://cookscodeinc.github.io/cookie-factory/manual/tutorials/template-catalog)
+- [GitHub Docs generation](https://cookscodeinc.github.io/cookie-factory/manual/tutorials/github-docs)
+- [Release guide](https://cookscodeinc.github.io/cookie-factory/manual/release/)
 
 ## Documentation
 
 The complete Cookie Factory documentation is available on the
-[project website](https://jcook3701.github.io/cookie-factory).
+[project website](https://cookscodeinc.github.io/cookie-factory).
 
 ## Contributing
 
-Issues and pull requests are welcome in the
-[GitHub repository](https://github.com/jcook3701/cookie-factory).
+Read the repository's
+[contribution guide](https://github.com/cookscodeinc/cookie-factory/blob/master/.github/CONTRIBUTING.md)
+and
+[Contributor License Agreement](https://github.com/cookscodeinc/cookie-factory/blob/master/.github/CLA.md)
+before opening a pull request.
 
 ## License
 
-Copyright (c) 2026, Jared Cook
+Copyright (c) 2026, Jared W. Cook
 
 This project is licensed under the **GPL-3.0-or-later License**. See the
-[LICENSE](https://github.com/jcook3701/cookie-factory/blob/master/LICENSE.md)
+[LICENSE](https://github.com/cookscodeinc/cookie-factory/blob/master/LICENSE.md)
 file for the full license text.
 
 SPDX-License-Identifier: GPL-3.0-or-later

@@ -80,7 +80,7 @@ clean:
 # --------------------------------------------------
 help:
 	$(AT)printf '📦 %s website Makefile\n' 'Cookie Factory'
-	$(AT)printf '   author: %s\n' 'Jared Cook'
+	$(AT)printf '   author: %s\n' 'Jared W. Cook'
 	$(AT)printf '   version: %s\n' '0.1.0'
 	$(AT)echo ""
 	$(AT)echo "Usage:"
