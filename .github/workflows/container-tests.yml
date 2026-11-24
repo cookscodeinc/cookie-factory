@@ -35,50 +35,50 @@ jobs:
       # Keep the source and auxiliary templates as siblings. Filesystem-glob
       # linters must never traverse another repository.
       - name: Check out Cookie Factory
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           path: cookie-factory
 
       - name: Check out GitHub Docs Cookiecutter
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.TEMPLATE_REPOSITORY_OWNER }}/github-docs-cookiecutter
           ref: feat-024
           path: templates/github-doc-cookiecutter
 
       - name: Check out Python 3 Cookiecutter
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.TEMPLATE_REPOSITORY_OWNER }}/python3-cookiecutter
           ref: feat-003
           path: templates/python3-cookiecutter
 
       - name: Check out Cookiecutter Cookiecutter
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.TEMPLATE_REPOSITORY_OWNER }}/cookiecutter-cookiecutter
           ref: feat-033
           path: templates/cookiecutter-cookiecutter
 
       - name: Check out Sphinx Cookiecutter
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.TEMPLATE_REPOSITORY_OWNER }}/sphinx-cookiecutter
           ref: feat-008
           path: templates/sphinx-cookiecutter
 
       - name: Check out Ansible Galaxy Cookiecutter
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.TEMPLATE_REPOSITORY_OWNER }}/ansible-galaxy-cookiecutter
           ref: feat-011
           path: templates/ansible-galaxy-cookiecutter
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Build test toolchain
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./cookie-factory
           file: ./cookie-factory/docker/Dockerfile
